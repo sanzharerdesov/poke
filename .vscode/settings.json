@@ -1,0 +1,15 @@
+{
+    "editor.wordWrap": "on",
+    "eslint.lintTask.enable": true,
+    "eslint.format.enable": true,
+    "eslint.packageManager": "yarn",
+    "editor.codeActionsOnSave": {
+        "source.fixAll": true
+    },
+    "eslint.alwaysShowStatus": true,
+    "eslint.validate": [
+        "react",
+        "javascript",
+        "javascriptreact",
+    ]
+}
