@@ -1,37 +1,17 @@
-name: Build and Deploy
 on:
   push:
     branches:
-      - master
+    - master
+
 jobs:
-  install-and-test:
-    runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        node-version: [12.x]
-    steps:
-      - uses: actions/checkout@master
-      - name: Use Node.js ${{ matrix.node-version }}
-        uses: actions/setup-node@master
-        with:
-          node-version: ${{ matrix.node-version }}
-      - name: Install and Test
-        run: |
-          yarn install
-          yarn build
-        env:
-          CI: true
-
-  build-and-deploy:
+  hugo-deploy-gh-pages:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout
-        uses: actions/checkout@master
-
-      - name: Build and Deploy
-        uses: JamesIves/github-pages-deploy-action@master
-        env:
-          ACCESS_TOKEN: ${{ secrets.GITHUB_TOK }}
-          BRANCH: gh-pages
-          FOLDER: build
-          BUILD_SCRIPT: yarn && yarn build
+    - uses: actions/checkout@master
+    - name: hugo-deploy-gh-pages
+      uses: linuxsuren/surenpi@master
+      env:
+        GIT_DEPLOY_KEY: ${{ secrets.GITHUB_TOK }}
+        HUGO_VERSION: "0.53"
+        WEBSITE_GIT: "git@github.com:sanzharerdesov/poke.git"
+        WEBSITE_DIR: "sanzharerdesov.github.io/poke"

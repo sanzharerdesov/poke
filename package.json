@@ -2,6 +2,7 @@
   "name": "poke",
   "version": "0.1.0",
   "private": true,
+  "homepage": "https://sanzharerdesov.github.io/poke/",
   "dependencies": {
     "antd": "^4.0.2",
     "axios": "^0.19.2",
