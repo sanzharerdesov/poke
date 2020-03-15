@@ -10,7 +10,7 @@
     flex-wrap: wrap;
     justify-items: center;
     flex-direction: row;
-    width: 1200px;
+    // width: 1200px;
 }
 
 .poke_item{
@@ -134,6 +134,8 @@
             flex-wrap: wrap;
             justify-items: flex-start;
             flex-direction: row;
+
+            width: 1200px;
         }
     }
     
