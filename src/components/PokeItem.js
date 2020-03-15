@@ -25,7 +25,7 @@ const PokeItem = (props) => {
       }
     }
     fetchData()
-  }, [props])
+  }, [props.data, props.url])
 
   return useObserver(() => (
     <div className="poke_item_body" onClick={() => setIsModal(!isModal)}>

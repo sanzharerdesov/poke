@@ -20,7 +20,7 @@ const Main = () => {
   const [searchValue, setSearchValue] = useState('')
   const [isResetVisible, setIsResetVisible] = useState(false)
 
-  async function fetchData (offset, limit) {
+  async function fetchData () {
     setIsResetVisible(false)
     setSearchValue('')
     const res = await fetch('https://pokeapi.co/api/v2/pokemon?offset=' + offset + '&limit=' + limit)
@@ -46,8 +46,8 @@ const Main = () => {
   }
 
   useEffect(() => {
-    fetchData(limit, offset)
-  }, [limit, offset])
+    fetchData()
+  }, [])
 
   function onShowSizeChange (offset, limit) {
     setLimit(limit)
@@ -59,6 +59,7 @@ const Main = () => {
 
   function onSearchData (value) {
     // setSearchValue(value);
+    console.log(value)
     searchData(value)
     setIsResetVisible(true)
   }
