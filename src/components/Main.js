@@ -20,13 +20,13 @@ const Main = () => {
   const [searchValue, setSearchValue] = useState('')
   const [isResetVisible, setIsResetVisible] = useState(false)
 
-  async function fetchData () {
+  async function fetchData (offset, limit) {
     setIsResetVisible(false)
     setSearchValue('')
     const res = await fetch('https://pokeapi.co/api/v2/pokemon?offset=' + offset + '&limit=' + limit)
     res.json()
       .then(res => { setPokeData(res.results) })
-      .catch((e) => console.log('Error: ' + `${e}`))
+      .catch((e) => console.log(`Error: ${e}`))
   }
 
   async function searchData (value) {
@@ -35,7 +35,7 @@ const Main = () => {
         const resName = await fetch('https://pokeapi.co/api/v2/pokemon/' + value)
         resName.json()
           .then(res => { setPokeData(null); setPokeItem(res) })
-          .catch((e) => console.log('Error: ' + `${e}`))
+          .catch((e) => console.log(`Error: ${e}`))
       }
         break
       case 'Type':
@@ -46,7 +46,7 @@ const Main = () => {
   }
 
   useEffect(() => {
-    fetchData()
+    fetchData(limit, offset)
   }, [limit, offset])
 
   function onShowSizeChange (offset, limit) {
@@ -85,7 +85,7 @@ const Main = () => {
         </Input.Group>
         {
           isResetVisible &&
-          <Button onClick={fetchData}>
+          <Button onClick={fetchData(limit, offset)}>
             Reset
           </Button>
         }

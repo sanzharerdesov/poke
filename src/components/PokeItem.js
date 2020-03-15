@@ -11,22 +11,21 @@ const PokeItem = (props) => {
   const [pokeData, setPokeData] = useState([])
   const [isModal, setIsModal] = useState(false)
 
-  async function fetchData () {
-    if (props.data) {
-      setPokeData(props.data)
-    } else {
-      const res = await fetch(props.url)
-      res.json()
-        .then(res => {
-          setPokeData(res)
-        })
-        .catch(() => null)
-    }
-  }
-
   useEffect(() => {
+    async function fetchData () {
+      if (props.data) {
+        setPokeData(props.data)
+      } else {
+        const res = await fetch(props.url)
+        res.json()
+          .then(res => {
+            setPokeData(res)
+          })
+          .catch(() => null)
+      }
+    }
     fetchData()
-  }, [])
+  }, [props])
 
   return useObserver(() => (
     <div className="poke_item_body" onClick={() => setIsModal(!isModal)}>
