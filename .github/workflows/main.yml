@@ -1,17 +1,18 @@
+
+name: Github Pages Publish
+
 on:
   push:
     branches:
-    - master
+      - master
 
 jobs:
-  hugo-deploy-gh-pages:
+  build:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@master
-    - name: hugo-deploy-gh-pages
-      uses: linuxsuren/surenpi@master
-      env:
-        GIT_DEPLOY_KEY: ${{ secrets.GITHUB_TOK }}
-        HUGO_VERSION: "0.53"
-        WEBSITE_GIT: "git@github.com:sanzharerdesov/poke.git"
-        WEBSITE_DIR: "sanzharerdesov.github.io/poke"
+      - uses: actions/checkout@v1
+      - uses: sterlingwes/gh-pages-deploy-action@v1.1
+        with:
+          access-token: ${{ secrets.GITHUB_TOK }}
+          source-directory: build
+          build-command: yarn build
